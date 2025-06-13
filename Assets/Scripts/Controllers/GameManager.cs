@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
 
     public enum eLevelMode
     {
-        TIMER,
-        MOVES
+        TIMER = 0,
+        MOVES = 1
     }
 
     public enum eStateGame
