@@ -237,11 +237,11 @@ public class BoardController : MonoBehaviour
     {
         m_board.ShiftDownItems();
 
-        yield return new WaitForSeconds(0.2f);
+        yield return Yielders.Get(0.2f);
 
         m_board.FillGapsWithNewItems();
 
-        yield return new WaitForSeconds(0.2f);
+        yield return Yielders.Get(0.2f);
 
         FindMatchesAndCollapse();
     }
@@ -250,11 +250,11 @@ public class BoardController : MonoBehaviour
     {
         m_board.ExplodeAllItems();
 
-        yield return new WaitForSeconds(0.2f);
+        yield return Yielders.Get(0.2f);
 
         m_board.Fill();
 
-        yield return new WaitForSeconds(0.2f);
+        yield return Yielders.Get(0.2f);
 
         FindMatchesAndCollapse();
     }
@@ -263,7 +263,7 @@ public class BoardController : MonoBehaviour
     {
         m_board.Shuffle();
 
-        yield return new WaitForSeconds(0.3f);
+        yield return Yielders.Get(0.3f);
 
         FindMatchesAndCollapse();
     }
