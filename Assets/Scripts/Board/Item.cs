@@ -12,10 +12,10 @@ public class Item
     public Transform View { get; private set; }
 
 
-    public virtual void SetView()
+    public virtual void SetView(string SO_path = Constants.SCRIPTABLEOBJECT_PREFAB_LIST_FRUIT)
     {
         string prefabname = GetPrefabName();
-        PrefabList prefabList = Resources.Load<PrefabList>(Constants.SCRIPTABLEOBJECT_PREFAB_LIST_FRUIT);
+        PrefabList prefabList = Resources.Load<PrefabList>(SO_path);
 
         if (prefabList != null && !string.IsNullOrEmpty(prefabname))
         {

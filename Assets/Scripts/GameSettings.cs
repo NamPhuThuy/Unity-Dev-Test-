@@ -15,4 +15,5 @@ public class GameSettings : ScriptableObject
     public float LevelTime = 30f;
 
     public float TimeForHint = 5f;
+    public string StylePath = Constants.SCRIPTABLEOBJECT_PREFAB_LIST_FRUIT;
 }

@@ -20,11 +20,11 @@ public class Constants
 
     public const string PREFAB_NORMAL_TYPE_SEVEN = "itemNormal07";
 
-    public const string PREFAB_BONUS_HORIZONTAL = "prefabs/itemBonusHorizontal";
+    public const string PREFAB_BONUS_HORIZONTAL = "itemBonusHorizontal";
 
-    public const string PREFAB_BONUS_VERTICAL = "prefabs/itemBonusVertical";
+    public const string PREFAB_BONUS_VERTICAL = "itemBonusVertical";
 
-    public const string PREFAB_BONUS_BOMB = "prefabs/itemBonusBomb";
+    public const string PREFAB_BONUS_BOMB = "itemBonusBomb";
     
     public const string SCRIPTABLEOBJECT_PREFAB_LIST_FRUIT = "PrefabList_Fruit";
     public const string SCRIPTABLEOBJECT_PREFAB_LIST_FISH = "PrefabList_Fish";

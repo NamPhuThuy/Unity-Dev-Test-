@@ -24,14 +24,8 @@ public class Board
     private Transform m_root;
 
     private int m_matchMin;
-    
-    public enum eBoardStyle
-    {
-        FRUIT,
-        FISH
-    }
-    
-    public eBoardStyle boardStyle = eBoardStyle.FRUIT;
+
+    private string stylePath = "";
 
     public Board(Transform transform, GameSettings gameSettings)
     {
@@ -41,6 +35,8 @@ public class Board
 
         this.boardSizeX = gameSettings.BoardSizeX;
         this.boardSizeY = gameSettings.BoardSizeY;
+
+        stylePath = gameSettings.StylePath;
 
         m_cells = new Cell[boardSizeX, boardSizeY];
 
@@ -109,7 +105,7 @@ public class Board
                 }
 
                 item.SetType(Utils.GetRandomNormalTypeExcept(types.ToArray()));
-                item.SetView();
+                item.SetView(stylePath);
                 item.SetViewRoot(m_root);
 
                 cell.Assign(item);
@@ -156,7 +152,7 @@ public class Board
                 NormalItem item = new NormalItem();
 
                 item.SetType(Utils.GetRandomNormalType());
-                item.SetView();
+                item.SetView(stylePath);
                 item.SetViewRoot(m_root);
 
                 cell.Assign(item);
@@ -290,7 +286,7 @@ public class Board
                 cellToConvert = matches[rnd];
             }
 
-            item.SetView();
+            item.SetView(stylePath);
             item.SetViewRoot(m_root);
 
             cellToConvert.Free();

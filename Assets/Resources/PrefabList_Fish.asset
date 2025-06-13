@@ -12,4 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92864abe9aa2b584c8c51c8d645c67d6, type: 3}
   m_Name: PrefabList_Fish
   m_EditorClassIdentifier: 
-  prefabs: []
+  prefabs:
+  - {fileID: 3659997580160879025, guid: f01d0954e7c139d46af12f676ebf4269, type: 3}
+  - {fileID: 1785785153685608194, guid: 1f0d1790971ab2549a2ba98b2ed17a4d, type: 3}
+  - {fileID: 3294712413297282940, guid: 99742c625f1e56c40b0ce4f2cf8aec55, type: 3}
+  - {fileID: 1847013109519995473, guid: e0af33f581e132d4ba3e566fc2a6fc96, type: 3}
+  - {fileID: 2097770874217783791, guid: 35786a721c8acc44f980ee92b0582573, type: 3}
+  - {fileID: 7027417101710865031, guid: 5bf6c2a377609ef46b3def2e4bb7fc2b, type: 3}
+  - {fileID: 5969588311605001038, guid: ad96750e55734c441b0a4a1d2bc09ec6, type: 3}
+  - {fileID: 8966441842133714791, guid: 2d66821e04f5d4846814888990037a7f, type: 3}
+  - {fileID: 4845050073848924748, guid: 9d8d7ce48fa4d30499e62f09d8ab8844, type: 3}
+  - {fileID: 2970490416863154319, guid: 7b8a57c4406cc904dbfc5f5f2e717a1e, type: 3}
