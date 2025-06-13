@@ -11,7 +11,7 @@ public class BoardController : MonoBehaviour
 
     public bool IsBusy { get; private set; }
 
-    private Board m_board;
+    [SerializeField] private Board m_board;
 
     private GameManager m_gameManager;
 
@@ -223,6 +223,7 @@ public class BoardController : MonoBehaviour
         {
             matches[i].ExplodeItem();
         }
+        
 
         if(matches.Count > m_gameSettings.MatchesMin)
         {

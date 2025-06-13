@@ -14,6 +14,17 @@ public class Utils
 
         return result;
     }
+    
+    public static NormalItem.eNormalType GetRandomNormalType(NormalItem.eNormalType[] types)
+    {
+        for (var i = 0; i < types.Length; i++)
+        {
+            Debug.Log($"Type {i}: {types[i]}");
+        }
+        NormalItem.eNormalType result = (NormalItem.eNormalType)types.GetValue(URandom.Range(0, types.Length));
+
+        return result;
+    }
 
     public static NormalItem.eNormalType GetRandomNormalTypeExcept(NormalItem.eNormalType[] types)
     {

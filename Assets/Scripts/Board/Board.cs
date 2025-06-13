@@ -27,6 +27,7 @@ public class Board
 
     private string stylePath = "";
 
+
     public Board(Transform transform, GameSettings gameSettings)
     {
         m_root = transform;
@@ -142,8 +143,23 @@ public class Board
 
     internal void FillGapsWithNewItems()
     {
-        
-        
+        Dictionary<NormalItem.eNormalType, int> itemFrequency = new Dictionary<NormalItem.eNormalType, int>();
+        foreach (NormalItem.eNormalType type in Enum.GetValues(typeof(NormalItem.eNormalType)))
+        {
+            itemFrequency[type] = 0;
+        }
+
+        for (int x = 0; x < boardSizeX; x++)
+        {
+            for (int y = 0; y < boardSizeY; y++)
+            {
+                Cell cell = m_cells[x, y];
+                if (cell.Item is NormalItem normalItem)
+                    itemFrequency[normalItem.ItemType]++;
+            }
+        }
+
+        Debug.Log($"Board.FillGapWithNewItems");
         for (int x = 0; x < boardSizeX; x++)
         {
             for (int y = 0; y < boardSizeY; y++)
@@ -151,7 +167,9 @@ public class Board
                 Cell cell = m_cells[x, y];
                 if (!cell.IsEmpty) continue;
                 
-                //check surrounding types
+                // Debug.Log($"x: {x}, y: {y} - cell is empty, filling with new item");
+                
+                // Check surrounding types
                 NormalItem.eNormalType[] surroundingTypes = new NormalItem.eNormalType[0]; 
                 foreach (var neighbor in new[] { cell.NeighbourBottom, cell.NeighbourLeft, cell.NeighbourRight, cell.NeighbourUp })
                 {
@@ -161,16 +179,49 @@ public class Board
                         surroundingTypes[surroundingTypes.Length - 1] = nitem.ItemType;
                     }
                 }
+                
+                // Find the least frequent type
+                NormalItem.eNormalType currentLeastNormalType = NormalItem.eNormalType.TYPE_ONE;
+                int currentLeastNormalTypeCount = int.MaxValue;
+                foreach (var pair in itemFrequency)
+                {
+                    // Debug.Log($"type: {pair.Key}, count: {pair.Value}");
+                    if (Array.Exists(surroundingTypes, type => type == pair.Key)) continue;
+                    if (pair.Value < currentLeastNormalTypeCount)
+                    {
+                        currentLeastNormalType = pair.Key;
+                        currentLeastNormalTypeCount = pair.Value;
+                    }
+                }
+                
+                // Create a list of least frequent types
+                NormalItem.eNormalType[] leastFrequentTypes = new NormalItem.eNormalType[0]; 
+                foreach (var pair in itemFrequency)
+                {
+                    if (Array.Exists(surroundingTypes, type => type == pair.Key)) continue;
+                    if (pair.Value >= currentLeastNormalTypeCount 
+                        && pair.Value <= currentLeastNormalTypeCount + 2)
+                    {
+                        Debug.Log($"Check");
+                        Array.Resize(ref leastFrequentTypes, leastFrequentTypes.Length + 1);
+                        leastFrequentTypes[leastFrequentTypes.Length - 1] = pair.Key;
+                    }
+                }
+                
 
+                // Create new item
                 NormalItem item = new NormalItem();
-
                 // item.SetType(Utils.GetRandomNormalType());
-                item.SetType(Utils.GetRandomNormalTypeExcept(surroundingTypes));
+                // item.SetType(Utils.GetRandomNormalTypeExcept(surroundingTypes));
+                item.SetType(Utils.GetRandomNormalType(leastFrequentTypes));
                 item.SetView(stylePath);
                 item.SetViewRoot(m_root);
 
                 cell.Assign(item);
                 cell.ApplyItemPosition(true);
+                
+                if (cell.Item is NormalItem normalItem)
+                    itemFrequency[normalItem.ItemType]++;
             }
         }
     }
