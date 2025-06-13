@@ -16,6 +16,8 @@ public class NormalItem : Item
     }
 
     public eNormalType ItemType;
+    
+    
 
     public void SetType(eNormalType type)
     {

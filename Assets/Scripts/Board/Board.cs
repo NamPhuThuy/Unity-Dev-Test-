@@ -24,6 +24,14 @@ public class Board
     private Transform m_root;
 
     private int m_matchMin;
+    
+    public enum eBoardStyle
+    {
+        FRUIT,
+        FISH
+    }
+    
+    public eBoardStyle boardStyle = eBoardStyle.FRUIT;
 
     public Board(Transform transform, GameSettings gameSettings)
     {

@@ -15,14 +15,23 @@ public class Item
     public virtual void SetView()
     {
         string prefabname = GetPrefabName();
+        PrefabList prefabList = Resources.Load<PrefabList>(Constants.SCRIPTABLEOBJECT_PREFAB_LIST_FRUIT);
 
-        if (!string.IsNullOrEmpty(prefabname))
+        if (prefabList != null && !string.IsNullOrEmpty(prefabname))
         {
-            GameObject prefab = Resources.Load<GameObject>(prefabname);
-            if (prefab)
+            GameObject prefab = prefabList.GetPrefabByName(prefabname);
+            if (prefab != null)
             {
                 View = GameObject.Instantiate(prefab).transform;
             }
+            else
+            {
+                Debug.LogError($"Prefab with name '{prefabname}' not found in PrefabList.");
+            }
+        }
+        else
+        {
+            Debug.LogError("PrefabList is null or prefabName is empty.");
         }
     }
 
