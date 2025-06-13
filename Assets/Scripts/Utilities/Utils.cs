@@ -19,6 +19,21 @@ public class Utils
     {
         List<NormalItem.eNormalType> list = Enum.GetValues(typeof(NormalItem.eNormalType)).Cast<NormalItem.eNormalType>().Except(types).ToList();
 
+        /*Debug.Log($"Except list");
+        foreach (NormalItem.eNormalType eNormalType in types)
+        {
+            Debug.Log(eNormalType.ToString());
+        }
+        Debug.Log($"-------------------");
+        
+        Debug.Log($"Remain list");
+        foreach (NormalItem.eNormalType eNormalType in list)
+        {
+            Debug.Log(eNormalType.ToString());
+        }
+        Debug.Log($"-------------------");*/
+        
+        
         int rnd = URandom.Range(0, list.Count);
         NormalItem.eNormalType result = list[rnd];
 

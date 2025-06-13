@@ -142,16 +142,30 @@ public class Board
 
     internal void FillGapsWithNewItems()
     {
+        
+        
         for (int x = 0; x < boardSizeX; x++)
         {
             for (int y = 0; y < boardSizeY; y++)
             {
                 Cell cell = m_cells[x, y];
                 if (!cell.IsEmpty) continue;
+                
+                //check surrounding types
+                NormalItem.eNormalType[] surroundingTypes = new NormalItem.eNormalType[0]; 
+                foreach (var neighbor in new[] { cell.NeighbourBottom, cell.NeighbourLeft, cell.NeighbourRight, cell.NeighbourUp })
+                {
+                    if (neighbor?.Item is NormalItem nitem)
+                    {
+                        Array.Resize(ref surroundingTypes, surroundingTypes.Length + 1);
+                        surroundingTypes[surroundingTypes.Length - 1] = nitem.ItemType;
+                    }
+                }
 
                 NormalItem item = new NormalItem();
 
-                item.SetType(Utils.GetRandomNormalType());
+                // item.SetType(Utils.GetRandomNormalType());
+                item.SetType(Utils.GetRandomNormalTypeExcept(surroundingTypes));
                 item.SetView(stylePath);
                 item.SetViewRoot(m_root);
 
